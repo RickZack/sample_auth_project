@@ -4,27 +4,33 @@ import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
 import {Link} from 'react-router-dom';
 import Image from "react-bootstrap/Image";
-import {AuthContext} from "./AuthContext";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function TopBar(props){
+    const {
+        isAuthenticated,
+        loginWithRedirect,
+        logout,
+    } = useAuth0();
+    const logoutWithRedirect = () =>
+        logout({
+            returnTo: window.location.origin,
+        });
+
     return (
-        <AuthContext.Consumer>
-            {(context) => (
                 <>
                     <Nav className="ml-auto pr-3">
                         <Link to={"/"} className={"nav-link"}>Homepage</Link>
-                        {context.authUser && <Link to={"/profile"} className={"nav-link"}>Profile</Link>}
+                        {isAuthenticated && <Link to={"/profile"} className={"nav-link"}>Profile</Link>}
                     </Nav>
 
                     {
-                        context.authUser &&  <Button onClick={()=>{context.logoutUser()}} variant="outline-light">Logout</Button>
+                        isAuthenticated &&  <Button onClick={()=>logoutWithRedirect()} variant="outline-light">Logout</Button>
                     }
                     {
-                        !context.authUser &&  <Button onClick={()=>{context.loginUser()}} variant="outline-light">Login</Button>
+                        !isAuthenticated &&  <Button onClick={()=>loginWithRedirect()} variant="outline-light">Login</Button>
                     }
                 </>
-            )}
-        </AuthContext.Consumer>
     );
 }
 

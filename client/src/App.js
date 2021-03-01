@@ -1,37 +1,26 @@
 import React from "react";
 import './App.css';
-import {Route} from "react-router-dom"
-import {Switch} from 'react-router';
+import { Router, Route, Switch } from "react-router-dom";
 import {Helmet} from "react-helmet";
-import {AuthContext} from "./components/AuthContext"
+import { useAuth0 } from "@auth0/auth0-react";
+import history from "./auth/history";
 import CommonBar from "./components/CommonBar"
 import Homepage from "./components/Homepage";
 import UserPage from "./components/UserPage";
 
-class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-    logout = () => {
-        //Perform proper logout using Auth0
-        this.setState({authUser: null});
-    }
+const App = ()=>{
+        const { isLoading, error } = useAuth0();
 
-    login = () => {
-        //Retrieve data from Auth0 login
-        const user={username: "Sample User"}
-        this.setState({authUser:user});
-    }
-
-    render() {
-        const value = {
-            authUser: this.state.authUser,
-            loginUser: this.login,
-            logoutUser: this.logout
+        if (error) {
+            return <div>Oops... {error.message}</div>;
         }
+
+        if (isLoading) {
+            return <div>Loading...</div>;
+        }
+
         return (
-            <AuthContext.Provider value={value}>
+            <Router history={history}>
                 <CommonBar/>
                 <Switch>
                     <Route path={"/profile"}>
@@ -43,9 +32,8 @@ class App extends React.Component {
                         <Homepage/>
                     </Route>
                 </Switch>
-            </AuthContext.Provider>
+            </Router>
         );
-    }
 }
 
 export default App;

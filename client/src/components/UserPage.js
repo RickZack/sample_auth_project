@@ -1,35 +1,25 @@
 import React from "react";
-import {AuthContext} from "./AuthContext";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import API from "../api/api.js"
 
-class UserPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state={};
-    }
-    componentDidMount() {
-        API.getUserInfo(1).then((user)=>this.setState({userInfo:user}))
-            .catch((err)=>console.log(err));
-    }
+function UserPage(props){
+    const { user } = useAuth0();
 
-    render(){
-        return(
-            <AuthContext.Consumer>
-                {(context)=>(
-                    <main>
-                        <h1>This is the user profile page</h1>
-                        <p>
-                            Auth. information:
-                            {JSON.stringify(context.authUser)}
-                        </p>
-                        <p>
-                            Result of getUserInfo:
-                            {JSON.stringify(this.state.userInfo)}
-                        </p>
-                    </main>
-                )}</AuthContext.Consumer>
+    return(
+            <main>
+                <h1>This is the user profile page</h1>
+                <p>
+                    Auth. information: <br/>
+                    {JSON.stringify(user)}
+                </p>
+                <p>
+                    Result of getUserInfo:
+
+                </p>
+            </main>
         );
-    }
 }
 
-export default UserPage;
+export default withAuthenticationRequired(UserPage, {
+    onRedirecting: () => <p>Loading</p>,
+});
