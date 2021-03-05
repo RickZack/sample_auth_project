@@ -1,3 +1,5 @@
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+
 async function getPublicInfo(){
     const response = await fetch("/public");
     const res_json = await response.json();
@@ -9,9 +11,15 @@ async function getPublicInfo(){
     }
 }
 
-
-async function getUserInfo(id){
-    const response = await fetch("/users/"+id);
+      
+async function getUserInfo(id,getAccessTokenSilently){
+    const token = await getAccessTokenSilently();
+    const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+    };
+    const response = await fetch("/users/"+id,config);
     const user_json = await response.json();
     if(response.ok){
         return user_json;
