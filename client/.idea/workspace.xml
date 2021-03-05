@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bd3971a7-8c9e-49dc-b46d-887fb6b5e099" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/auth/auth_config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/auth/config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/auth/history.js" afterDir="false" />
+    <list default="true" id="bd3971a7-8c9e-49dc-b46d-887fb6b5e099" name="Default Changelist" comment="Integrato login su React. Resta da gestire la chiamata delle API">
+      <change afterPath="$PROJECT_DIR$/public/sw.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/RequestPushNotifications.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pushNotifications/http.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pushNotifications/pushNotifications.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pushNotifications/usePushNotifications.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CommonBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CommonBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
